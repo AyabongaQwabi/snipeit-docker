@@ -6,7 +6,7 @@ WORKDIR /docker-entrypoint-initdb.d
 
 # Copy custom initialization scripts (optional)
 # Ensure any `.sql` or `.sh` scripts are in the same directory as this Dockerfile
-COPY ./init-scripts/ /docker-entrypoint-initdb.d/
+COPY ./mariadb/init-scripts/ /docker-entrypoint-initdb.d/
 
 # Expose MariaDB port
 EXPOSE 3306
