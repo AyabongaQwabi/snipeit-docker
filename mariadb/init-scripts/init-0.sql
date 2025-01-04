@@ -1,4 +1,4 @@
 CREATE DATABASE IF NOT EXISTS snipeit;
-CREATE USER 'snipeit'@'%' IDENTIFIED BY 'snipeit';
-GRANT ALL PRIVILEGES ON snipeit.* TO 'snipeit'@'%';
+CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'mypassword'; -- Use the MARIADB_USER and MARIADB_PASSWORD values
+GRANT ALL PRIVILEGES ON snipeit.* TO 'admin'@'%';
 FLUSH PRIVILEGES;
