@@ -1,0 +1,25 @@
+services:
+  snipeit-db:
+    image: mariadb
+    container_name: snipeit-db
+    hostname: snipeit-db
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./snipeit-db:/var/lib/mysql
+
+  snipeit:
+    image: linuxserver/snipe-it:latest
+    container_name: snipeit
+    hostname: snipeit
+    restart: unless-stopped
+    env_file: .env
+    depends_on:
+      - snipeit-db
+    volumes:
+      - ./config:/config
+
+networks:
+  default:
+    name: $DOCKER_MY_NETWORK
+    external: true

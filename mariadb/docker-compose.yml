@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+mariadb:
+  image: mariadb
+    container_name: snipeit-db
+    hostname: snipeit-db
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./snipeit-db:/var/lib/mysql

@@ -1,25 +1,26 @@
+version: '3.8'
+
 services:
   snipeit-db:
     image: mariadb
     container_name: snipeit-db
-    hostname: snipeit-db
-    restart: unless-stopped
-    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: snipeit
+      MYSQL_DATABASE: snipeit
+      MYSQL_USER: snipeit
+      MYSQL_PASSWORD: snipeit
     volumes:
       - ./snipeit-db:/var/lib/mysql
+    ports:
+      - '3306:3306'
 
-  snipeit:
+  snipeit-app:
     image: linuxserver/snipe-it:latest
-    container_name: snipeit
-    hostname: snipeit
-    restart: unless-stopped
-    env_file: .env
+    container_name: snipeit-app
     depends_on:
       - snipeit-db
+    env_file: .env
     volumes:
       - ./config:/config
-
-networks:
-  default:
-    name: $DOCKER_MY_NETWORK
-    external: true
+    ports:
+      - '8080:80'

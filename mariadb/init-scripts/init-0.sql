@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS snipeit;
+CREATE USER 'snipeit'@'%' IDENTIFIED BY 'snipeit';
+GRANT ALL PRIVILEGES ON snipeit.* TO 'snipeit'@'%';
+FLUSH PRIVILEGES;
